@@ -110,4 +110,18 @@ public class Equipo
         }
     }
 
+    /**
+     * Metodo que permite al equipo entrenarse y modificar su estado de forma
+     */
+    public void entrenar()
+    {
+        //mediante un duro entrenamiento los jugadores pueden aumentar su estado de forma en un % del 10 al 50
+        Random rnd = new Random();
+        int entrenamiento = rnd.nextInt(5) + 1;
+        //se recorre la coleccion de jugadores modificando su estado de forma
+        for(Jugador jugador : jugadores)
+        {
+            jugador.setForma(jugador.getEstadoDeForma() + entrenamiento);
+        }
+    }
 }

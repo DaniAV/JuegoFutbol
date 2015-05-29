@@ -60,6 +60,10 @@ public abstract class Jugador
     public void setForma(int nuevoEstadoForma)
     {
         estadoDeForma = nuevoEstadoForma;
+        if(estadoDeForma > 10)
+        {
+            estadoDeForma = 10;
+        }
     }
 
     /**
