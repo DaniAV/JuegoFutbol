@@ -21,21 +21,38 @@ public class Equipo
     {
         jugadores = new ArrayList<>();
         Random rnd = new Random(); //Creamos un objeto rando para asignar valores aleatorios
-        int dorsalPortero = 1;
-        int dorsales = 2;
+        int dorsales = 1;
+
         this.nombre = nombre;
         this.numeroDeJugadoresReservas = numeroDeJugadores - NUMERODEJUGADORESTITULARES;
+
+        jugadores.add(new Portero(dorsales)); //Creamos un portero con dorsal 1 y lo metemos en la lista de jugadores. 
+        dorsales++;
+        int dorsalCapitan = rnd.nextInt(numeroDeJugadores - 1)+2; //Creamos un numero de capitan aleatorio entre dos y el numero de jugadores que hay.
         
-        jugadores.add(new Portero(0,0, dorsalPortero, 0,0)); //Creamos un portero con dorsal 1 y lo metemos en la lista de jugadores. 
-        int dorsalCapitan = rnd.nextInt(numeroDeJugadores)+dorsales; //Creamos un numero de capitan aleatorio entre dos y el numero de jugadores que hay.
-        jugadores.add(new Capitan(dorsalCapitan));//Creamos un capitan con dorsal aleatorio anterior, y lo metemos en la lista de jugadores.
 
         int index=0;
-        while(index<numeroDeJugadores-2){ //Creamos el resto de jugadores y lo metemos en el array de jugadores.
-            Jugador jugador = new JugadorCampo(dorsales);
-            jugadores.add(jugador);
-            if(jugador.getDorsal() == dorsalCapitan){
-                jugador.setDorsal(23);
+        boolean hayUnCrack = false;
+        while(index<numeroDeJugadores-1){ //Creamos el resto de jugadores y lo metemos en el array de jugadores.
+
+            if(dorsalCapitan == dorsales)
+            {
+                //si coincide los dorsales se crea el capitan y se añade al array
+                jugadores.add(new Capitan(dorsalCapitan));
+            }
+            else
+            {
+                //se crean los jugadores de campo y se añaden
+                Jugador jugador = new JugadorCampo(dorsales);
+                jugadores.add(jugador);
+
+                //si no hay todavia nigun crack en el equipo
+                if(!hayUnCrack)
+                {
+                    //se comprueba si ese jugador puede ser un crack
+                    hayUnCrack = ((JugadorCampo)jugador).convertirACrack();
+
+                }
             }
             dorsales++;
             index++;
@@ -92,7 +109,5 @@ public class Equipo
             System.out.println(suplente.toString());
         }
     }
-    
-   
-}
 
+}

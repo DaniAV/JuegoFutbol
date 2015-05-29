@@ -14,24 +14,34 @@ public class Portero extends Jugador
     /**
      * Constructor for objects of class Portero
      */
-    public Portero(int edad, int estadoDeForma,int dorsal, int agilidad, int fortalezaMental)
+    public Portero(int dorsal)
     {
         super(dorsal);
         Random rnd = new Random();
-        this.agilidad = rnd.nextInt(10);
-        this.fortalezaMental = rnd.nextInt(10);
+        this.agilidad = rnd.nextInt(11);
+        this.fortalezaMental = rnd.nextInt(11);
     }
 
     public int valoracion(){
-        return (agilidad + fortalezaMental)/2;
+        return (getEstadoDeForma() + agilidad + fortalezaMental)/3;
     }
-    
-    public String setNombre(){
-        return super.setNombre();
+       
+    /**
+     * Metodo que devuelve la puntuacion en agilidad
+     * @return la puntuacion en agilidad del portero
+     */
+    public int getAgilidad()
+    {
+        return agilidad;
     }
-    
-    public String getNombre(){
-         return super.getNombre();
+   
+    /**
+     * Metodo que devuelve la puntuacion en fortaleza mental
+     * @return la puntuacion en fortaleza mental del portero
+     */
+    public int getFortalezaMental()
+    {
+        return fortalezaMental;
     }
     
     public String toString(){
@@ -39,4 +49,6 @@ public class Portero extends Jugador
         return super.toString() + String.format("  Agil  : %2d  FortM   : %2d %12s   Valoracion : %2d",agilidad,
             fortalezaMental,espacio,valoracion());
     }
+    
+    
 }

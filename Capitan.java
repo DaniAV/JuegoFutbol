@@ -35,4 +35,6 @@ public class Capitan extends JugadorCampo
     public String toString(){
         return super.toString() + " Liderazgo: " + liderazgo;
     }
+    
+   
 }
