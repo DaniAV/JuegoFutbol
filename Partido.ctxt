@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=equipoLocal\ equipoVisitante
+comment0.target=Partido(Equipo,\ Equipo)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Partido\r\n
+comment1.params=
+comment1.target=void\ mostrarAlineaciones()
+numComments=2

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=dorsal
+comment0.target=Capitan(int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Capitan\r\n
+comment1.params=
+comment1.target=int\ valoracion()
+comment2.params=
+comment2.target=java.lang.String\ setNombre()
+comment3.params=
+comment3.target=java.lang.String\ getNombre()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5
