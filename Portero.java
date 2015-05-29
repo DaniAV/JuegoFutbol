@@ -35,6 +35,8 @@ public class Portero extends Jugador
     }
     
     public String toString(){
-        return super.toString() + " Agilidad: " + agilidad  + " Fortaleza Mental: " + fortalezaMental;
+         String espacio = " ";
+        return super.toString() + String.format("  Agil  : %2d  FortM   : %2d %12s   Valoracion : %2d",agilidad,
+            fortalezaMental,espacio,valoracion());
     }
 }

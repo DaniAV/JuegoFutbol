@@ -37,6 +37,7 @@ public class JugadorCampo extends Jugador
     }
     
     public String toString(){
-        return super.toString() + " Pase: " + pase  + " Regate: " + regate + " Remate: " + remate;
+        return super.toString() + String.format("  Pases : %2d  Regates : %2d  Remates : %2d"
+            + "  Valoracion : %2d",pase,regate,remate,valoracion());
     }
 }

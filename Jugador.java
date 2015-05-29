@@ -49,6 +49,6 @@ public abstract class Jugador
     }
     
     public String toString(){
-        return ("Nombre: " + nombre + " Dorsal: " + dorsal + " Edad: " + edad  + " Estado de forma: " + estadoDeForma);
+        return String.format("Dorsal : %3d.  %-12s  (%2d  anios )  Forma : %2d",dorsal,nombre,edad,estadoDeForma);
     }
 }
