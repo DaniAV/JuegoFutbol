@@ -65,6 +65,7 @@ public class Equipo
         }
     }
 
+   
     public void alineacionTitular(){
         Random rnd = new Random(); //Creamos un objeto random para asignar valores aleatorios.
         

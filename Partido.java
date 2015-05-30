@@ -62,11 +62,11 @@ public class Partido
         String resultado = "";
         if(valoracion <= 0.5)
         {
-            if(valoracion < 0.2)
+            if(valoracion <= 0.2)
             {
                 resultado =" 1 - 0 ";
             }
-            else if(valoracion >= 0.2 && valoracion <= 0.35)
+            else if(valoracion > 0.2 && valoracion <= 0.35)
             {
                 resultado = " 2 - 1 ";
             }
@@ -119,11 +119,11 @@ public class Partido
         String resultado = "";
         if(valoracion <= 0.5)
         {
-            if(valoracion < 0.2)
+            if(valoracion <= 0.2)
             {
                 resultado =" 0 - 1 ";
             }
-            else if(valoracion >= 0.2 && valoracion <= 0.35)
+            else if(valoracion > 0.2 && valoracion <= 0.35)
             {
                 resultado = " 1 - 2 ";
             }
@@ -173,6 +173,7 @@ public class Partido
     private String empate(float valoracion)
     {
         String resultado = " ";
+        //se obtiene el valor absoluto del parametro 
         float valorAbs = Math.abs(valoracion);
         if(valorAbs >= 0 && valorAbs < 0.33 )
         {

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=numEquipos
+comment0.target=Liga(int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Liga\r\n
+comment1.params=indice
+comment1.target=java.lang.String\ asignarNombre(int)
+comment1.text=\r\n\ Metodo\ que\ devuelve\ \ un\ nombre\ de\ un\ equipo\ a\ partir\ de\ una\ coleccion\ de\ nombres\r\n\ @return\ el\ nombre\ de\ un\ equipo\r\n
+comment2.params=
+comment2.target=int\ numeroMaxJornadas()
+comment2.text=\r\n\ Metodo\ que\ calcula\ el\ numero\ maximo\ de\ jornadas\ que\ se\ puede\ jugar\ en\ la\ liga\r\n\ @return\ el\ numero\ maximo\ de\ jornadas\ que\ se\ puede\ jugar\r\n
+numComments=3
