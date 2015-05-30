@@ -14,12 +14,18 @@ public class Equipo
     private ArrayList<Jugador> jugadores;
     public static final int NUMERODEJUGADORESTITULARES = 11;
     private int numeroDeJugadoresReservas;
+    //almacena los 11 jugadores que forma el equipo titular
+    private ArrayList <Jugador>jugadoresTitulares;
+    //almacena los jugadores suplentes del equipo
+    private ArrayList <Jugador>jugadoresSuplentes;
     /**
      * Constructor for objects of class Equipo
      */
     public Equipo(String nombre, int numeroDeJugadores)
     {
         jugadores = new ArrayList<>();
+        jugadoresTitulares = new ArrayList<>();
+        jugadoresSuplentes = new ArrayList<>();
         Random rnd = new Random(); //Creamos un objeto rando para asignar valores aleatorios
         int dorsales = 1;
 
@@ -61,9 +67,7 @@ public class Equipo
 
     public void alineacionTitular(){
         Random rnd = new Random(); //Creamos un objeto random para asignar valores aleatorios.
-        ArrayList <Jugador>jugadoresTitulares  = new ArrayList<>();
-        ArrayList <Jugador>jugadoresSuplentes = new ArrayList<>();
-
+        
         //introducimos en titulares al portero y al capitan automaticamente
         for(Jugador jugad: jugadores){
             if(jugad instanceof Portero || jugad instanceof Capitan){
@@ -97,12 +101,8 @@ public class Equipo
         for(Jugador titular: jugadoresTitulares){
             System.out.println(titular.toString());
         }
-        //Calculamos la media.
-        float media = 0F;
-        for(Jugador jugador: jugadoresTitulares){
-            media += jugador.valoracion();
-        }
-        System.out.println("*********************  Media de valoración del equipo titular: " + media/jugadoresTitulares.size() + "*******************************\n");
+       
+        System.out.printf("*********************  Media de valoración del equipo titular: %.2f *******************************\n",valoracionMediaEquipoTitular());
         //imprimimos suplentes
         System.out.println("**SUPLENTES**");
         for(Jugador suplente: jugadoresSuplentes){
@@ -111,7 +111,7 @@ public class Equipo
     }
 
     /**
-     * Metodo que permite al equipo entrenarse y modificar su estado de forma
+     * Metodo que permite al equipo entrenarse y aumentar su estado de forma entre un 10 y un 50%
      */
     public void entrenar()
     {
@@ -123,5 +123,28 @@ public class Equipo
         {
             jugador.setForma(jugador.getEstadoDeForma() + entrenamiento);
         }
+    }
+    
+    /**
+     * Metodo que calcula la valoracion media del equipo titular
+     * @return la valoracion media del equipo titular
+     */
+    public float valoracionMediaEquipoTitular()
+    {
+        float valoracionMedia = 0;
+        for(Jugador jugador : jugadoresTitulares)
+        {
+            valoracionMedia += jugador.valoracion();
+        }
+        return valoracionMedia/NUMERODEJUGADORESTITULARES;
+    }
+    
+    /**
+     * Metodo que devuelve el nombre del equipo
+     * @return el nombre del equipo en forma de cadena
+     */
+    public String getNombre()
+    {
+        return nombre;
     }
 }
