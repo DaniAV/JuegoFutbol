@@ -10,7 +10,11 @@ public class Partido
     // instance variables - replace the example below with your own
     private Equipo local;
     private Equipo visitante;
-
+    //cte que indica los puntos que se suman cuando el equipo gana el partido
+    public static final int PUNTOS_GANAR = 3;
+    //cte que indica los puntos que se suman cuando se empate
+    public static final int PUNTOS_EMPATE = 1;
+   
     /**
      * Constructor for objects of class Partido
      */
@@ -18,12 +22,14 @@ public class Partido
     {
         // initialise instance variables
         this.local = equipoLocal;
+        local.alineacionTitular();
         this.visitante = equipoVisitante;
+        visitante.alineacionTitular();
     }
 
     public void mostrarAlineaciones(){
-        local.alineacionTitular();
-        visitante.alineacionTitular();
+        local.mostrarAlineacion();
+        visitante.mostrarAlineacion();
     }
 
     /**
@@ -40,15 +46,34 @@ public class Partido
         {
             
             System.out.println(local.getNombre() + victoriaLocal(valoLocal - valoVisitante) + visitante.getNombre());
+            //se le suma los 3 puntos al ganador
+            local.setPuntos(PUNTOS_GANAR);
+            //se aumenta el numero de partidos ganados
+            local.setPartidosGanados();
+            //se aumenta el numero de partidos perdidos al perdedor
+            visitante.setPartidosPerdidos();
         }
         else if(valoLocal +1 < valoVisitante)
         {
            System.out.println(local.getNombre() + victoriaVisitante(valoVisitante - valoLocal) + visitante.getNombre());
+           visitante.setPuntos(PUNTOS_GANAR);
+           //se aumenta el numero de partidos ganados
+           visitante.setPartidosGanados();
+           //se aumenta el numero de partidos perdidos al perdedor
+           local.setPartidosPerdidos();
         }
         else
         {
             System.out.println(local.getNombre() + empate(valoVisitante - valoLocal) + visitante.getNombre());
+            local.setPuntos(PUNTOS_EMPATE);
+            visitante.setPuntos(PUNTOS_EMPATE);
+            //se aumenta el numero de partidos empatados
+            local.setPartidosEmpatados();
+            visitante.setPartidosEmpatados();
         }
+        //se deshacen las alineaciones al terminar el partido
+        local.deshacerAlineacion();
+        visitante.deshacerAlineacion();
     }
 
     /**
