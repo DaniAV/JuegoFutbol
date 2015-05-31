@@ -75,4 +75,20 @@ public abstract class Jugador
         return estadoDeForma;
     }
 
+    /**
+     * Metodo que puede modificar el estado de forma del jugador aumentando la
+     * puntuacion como maximo 1 puntos mas
+     */
+    public void entrenar()
+    {
+        Random rnd = new Random();
+        //el entrenamiento puede no aumentar el estado de forma o aumentarlo como maximo 1 punto
+        int efectoEntrenamiento = rnd.nextInt(2);
+        estadoDeForma += efectoEntrenamiento;
+        //se controla que no puede superar nunca el limite maximo
+         if(estadoDeForma > 10)
+        {
+            estadoDeForma = 10;
+        }
+    }
 }
