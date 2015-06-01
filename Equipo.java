@@ -136,9 +136,7 @@ public class Equipo
         //se recorre la coleccion de jugadores modificando su estado de forma
         for(Jugador jugador : jugadores)
         {
-            System.out.println(jugador);
             jugador.entrenar();
-            System.out.println(jugador);
         }
     }
 

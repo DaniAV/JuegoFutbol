@@ -73,6 +73,7 @@ public class Partido
         }
         //se deshacen las alineaciones al terminar el partido
         local.deshacerAlineacion();
+        
         visitante.deshacerAlineacion();
     }
 
