@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
 /**
  * Esta clase representa a un liga de futbol
  * 
@@ -107,7 +108,7 @@ public class Liga
         for(Equipo equipo : copia)
         {
 
-            System.out.println(num + "." + " " + equipo);
+            System.out.println(String.format("%2d",num)  + "." + " " + equipo);
             num++;
         }
 
@@ -122,73 +123,131 @@ public class Liga
         //se mira el numero de equipos que tiene la liga
         int numEquipos = equipos.size();
         //el numero maximo de jornadas que se puede jugar
-        int maxJornadas = (numEquipos - 1)*2;
+        int maxJornadas = (numEquipos - 1);
         if(num > maxJornadas)
         {
             num = maxJornadas;
         }
+        //se determina el numero maximo de partidos por jornada
         int maxPartidosJornada = numEquipos/2;
-
-        //se hacen los emparejamientos de la primera jornada
-        System.out.println("Jornada " + jornadaActual);
-        int indiceJornadaImpar = numEquipos - 1;
-        int aux = indiceJornadaImpar;
-        for(int j = 0; j < maxPartidosJornada ; j++)
+        //se repite el bucle tantas veces como jornadas haya
+        for(int i = 0; i < num ; i++)
         {
-            Partido partido = new Partido(equipos.get(j),equipos.get(aux));
-            partido.simularPartido();
-            aux--;
-        }
-        indiceJornadaImpar--;
-        jornadaActual++;
 
-        for(int i = 0; i < num - 1; i++)
-        {
             System.out.println("Jornada " + jornadaActual);
-            //si la jornada es par
-            if(i%2 == 0)
+
+            Random rnd = new Random();
+            //se hace una copia del array para no modificarlo
+            ArrayList<Equipo> copia = new ArrayList<>();
+            copia =(ArrayList)equipos.clone();
+            //se repite el bucle tantas veces como partidos haya por jornada
+            for(int j = 0; j < maxPartidosJornada ; j++)
             {
-                //variable que indica donde comienza el bucle
+                //se obtiene el equipo local de forma aleatoria
+                int loc = rnd.nextInt(copia.size());
+                Equipo local = copia.get(loc);
+                //se elimina este equipo del array para que no aparezca mas esta jornada
+                copia.remove(local);
+                //se hace lo mismo con el equipo visitante
+                int visi = rnd.nextInt(copia.size());
+                Equipo visitante = copia.get(visi);
+                copia.remove(visi);
+                //se crea el partido y se simula
+                Partido partido = new Partido(local,visitante);
+                partido.simularPartido();
 
-                int indiceJornadaPar = 1;
-                //se usa una variable auxiliar
-                int cont = indiceJornadaPar;
-                for(int a = numEquipos - 1; a >= maxPartidosJornada; a--)
-                {
-                    Partido partido2 = new Partido(equipos.get(a),equipos.get(cont));
-                    partido2.simularPartido();
-                    cont++;
-
-                    if(cont == maxPartidosJornada)
-                    {
-                        cont = 0;
-                    }
-                }
-                indiceJornadaPar++;
-                jornadaActual++;
             }
-            else
-            {
-                int aux2 = indiceJornadaImpar;
-                for(int b = 0; b < maxPartidosJornada; b++)
-                {
-                    Partido partido = new Partido(equipos.get(b),equipos.get(aux2));
-                    partido.simularPartido();
-                    aux2--;
-
-                    if(aux2 == maxPartidosJornada)
-                    {
-                        aux2 = numEquipos - 1;
-                    }
-                }
-                indiceJornadaImpar--;
-                jornadaActual++;
-            }
-
+            //al acabar la jornada se aumenta el contador
+            jornadaActual++;
+            //al terminar la jornada todos los equipos entrenan
+            entrenanEquipos();
         }
 
     } 
 
+    /**
+     * Metodo por el cual todos equipos entrenan
+     */
+    private void entrenanEquipos()
+    {
+        for(Equipo equipo : equipos)
+        {
+            equipo.entrenamiento();
+        }
 
-   
+    }
+
+    /**
+     * Metodo que simula que se disputan una serie de jornadas de liga determinadas por el parametro
+     * @param num es el numero de jornadas a jugar
+     */
+    public void simularJornadas2(int num)
+    {
+        //se mira el numero de equipos que tiene la liga
+        int numEquipos = equipos.size();
+        //el numero maximo de jornadas que se puede jugar
+        int maxJornadas = (numEquipos - 1);
+        if(num > maxJornadas)
+        {
+            num = maxJornadas;
+        }
+        //se determina el numero maximo de partidos por jornada
+        int maxPartidosJornada = numEquipos/2;
+        //se hace una copia del array para no modificarlo
+        ArrayList<Equipo> copia = new ArrayList<>();
+        copia =(ArrayList)equipos.clone();
+        
+        Collections.shuffle(copia);
+        for(int i = 1; i < num + 1; i++)
+        {
+            //se comprueba si la jornada es par o impar
+            if(i %2 != 0)
+            {
+                System.out.println("Jornada " + (i));
+                int a = 0;
+                int b = copia.size() - 1;
+                for(int k = 0; k < maxPartidosJornada; k++)
+                {
+                    Equipo local = copia.get(a);
+                    Equipo visitante = copia.get(b);
+                    Partido partido = new Partido(local,visitante);
+                    partido.simularPartido();
+                    a++;
+                    b--;
+                }
+                //se reordena el arrayList para hacer que se mueva la lista una posicion,excepto la posicion 0
+                //que se mantiene siempre igual
+                Equipo equipo = copia.get(1);
+                copia.remove(1);
+                //se añade el equipo que estaba en la posicion 1 al ultimo lugar
+                copia.add(equipo);
+
+                //al terminar la jornada todos los equipos entrenan
+                entrenanEquipos();
+            }
+            else
+            {
+                //si la jornada es par,se alterna los partidos de local y visitante
+                System.out.println("Jornada " + (i));
+                int a = 0;
+                int b = copia.size() - 1;
+                for(int k = 0; k < maxPartidosJornada; k++)
+                {
+                    Equipo local = copia.get(b);
+                    Equipo visitante = copia.get(a);
+                    Partido partido = new Partido(local,visitante);
+                    partido.simularPartido();
+                    a++;
+                    b--;
+                }
+                //se reordena el arrayList
+                Equipo equipo = copia.get(1);
+                copia.remove(1);
+                copia.add(equipo);
+
+                //al terminar la jornada todos los equipos entrenan
+                entrenanEquipos();
+            }
+        }
+    }
 }

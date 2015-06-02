@@ -262,4 +262,16 @@ public class Equipo
     {
         return String.format("%-18s PG : %2d PP : %2d PE : %2d Puntos : %3d",nombre,partidosGanados,partidosPerdidos,partidosEmpatados,puntos);
     }
+
+    public boolean equals(Equipo equip)
+    {
+        return this.nombre.equals(equip.getNombre());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash;
+        return hash;
+    }
 }
