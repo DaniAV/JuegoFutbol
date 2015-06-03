@@ -26,6 +26,8 @@ public class Equipo
     private int partidosPerdidos;
     //indica el numero de partidos empatados por el equipo
     private int partidosEmpatados;
+    //indica el numero de partidos jugados
+    private int partidosJugados;
     /**
      * Constructor for objects of class Equipo
      */
@@ -38,6 +40,7 @@ public class Equipo
         partidosGanados = 0;
         partidosPerdidos = 0;
         partidosEmpatados = 0;
+        partidosJugados = 0;
         Random rnd = new Random(); //Creamos un objeto rando para asignar valores aleatorios
         int dorsales = 1;
 
@@ -260,18 +263,15 @@ public class Equipo
      */
     public String toString()
     {
-        return String.format("%-18s PG : %2d PP : %2d PE : %2d Puntos : %3d",nombre,partidosGanados,partidosPerdidos,partidosEmpatados,puntos);
+        return String.format("%-18s PJ : %2d PG : %2d PP : %2d PE : %2d Puntos : %3d",nombre,partidosJugados,
+                                partidosGanados,partidosPerdidos,partidosEmpatados,puntos);
     }
-
-    public boolean equals(Equipo equip)
-    {
-        return this.nombre.equals(equip.getNombre());
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash;
-        return hash;
-    }
+    
+   /**
+    * Metodo que aumenta el numero de partidos jugados
+    */
+   public void setPartidosJugados()
+   {
+       partidosJugados++;
+   }
 }

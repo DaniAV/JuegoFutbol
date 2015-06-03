@@ -66,7 +66,7 @@ public class Liga
 
         ArrayList<Equipo> copia = new ArrayList<>();
         copia =(ArrayList)equipos.clone();
-
+        System.out.println("Clasificacion : ");
         //se hace un ordenamiento en burbuja
         for(int i = 0; i < copia.size();i++)
         {
@@ -185,6 +185,7 @@ public class Liga
     {
         //se mira el numero de equipos que tiene la liga
         int numEquipos = equipos.size();
+        
         //el numero maximo de jornadas que se puede jugar
         int maxJornadas = (numEquipos - 1);
         if(num > maxJornadas)
@@ -196,12 +197,12 @@ public class Liga
         //se hace una copia del array para no modificarlo
         ArrayList<Equipo> copia = new ArrayList<>();
         copia =(ArrayList)equipos.clone();
-        
+             
         Collections.shuffle(copia);
         for(int i = 1; i < num + 1; i++)
         {
             //se comprueba si la jornada es par o impar
-            if(i %2 != 0)
+            if(i%2 != 0)
             {
                 System.out.println("Jornada " + (i));
                 int a = 0;

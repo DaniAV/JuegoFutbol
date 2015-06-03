@@ -71,6 +71,9 @@ public class Partido
             local.setPartidosEmpatados();
             visitante.setPartidosEmpatados();
         }
+        //se aumenta el numero de partidos jugados
+        local.setPartidosJugados();
+        visitante.setPartidosJugados();
         //se deshacen las alineaciones al terminar el partido
         local.deshacerAlineacion();
         
